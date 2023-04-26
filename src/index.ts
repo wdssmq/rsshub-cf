@@ -1,0 +1,35 @@
+addEventListener("fetch", event => {
+    event.respondWith(handleRequest(event.request))
+})
+
+const proxyList = [
+    // "https://rss.shab.fun/",
+    "https://vercel.mizuno2023.xyz/",
+    "https://rsshub.rssforever.com/",
+    "https://rsshub.mizuno2023.xyz/",
+    "https://rsshub.app/",
+];
+
+async function handleRequest(request: Request<unknown, CfProperties<unknown>>) {
+    // 获取请求的 URL
+    const reqUrl = request.url;
+    // 获取 path
+    const path = new URL(reqUrl).pathname;
+    // 随机选择一个代理
+    let proxyHost = proxyList[Math.floor(Math.random() * proxyList.length)];
+    // 去除代理 URL 的最后一个 /
+    proxyHost = proxyHost.replace(/\/$/, '');
+    // 拼接代理 URL
+    const proxyUrl = proxyHost + path;
+
+    // // debug
+    // return new Response(JSON.stringify({ reqUrl, path, proxyUrl }), {
+    //     headers: { "Content-Type": "application/json" },
+    // });
+
+    // 返回代理请求的结果
+    return fetch(proxyUrl);
+}
+
+// bilibili/user/video/44744006
+
