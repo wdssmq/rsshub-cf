@@ -4,8 +4,8 @@ addEventListener("fetch", event => {
 
 const proxyList = [
     // "https://rss.shab.fun/",
+    // "https://rsshub.rssforever.com/",
     "https://vercel.mizuno2023.xyz/",
-    "https://rsshub.rssforever.com/",
     "https://rsshub.mizuno2023.xyz/",
     "https://rsshub.app/",
 ];
@@ -27,9 +27,22 @@ async function handleRequest(request: Request<unknown, CfProperties<unknown>>) {
     //     headers: { "Content-Type": "application/json" },
     // });
 
-    // 返回代理请求的结果
-    return fetch(proxyUrl);
+    // // 返回代理请求的结果
+    // return fetch(proxyUrl);
+
+    // 请求代理 URL
+    const curRes = await fetch(proxyUrl);
+    // 判断是否为失败
+    if (curRes.status >= 400) {
+        // 返回失败
+        return new Response(JSON.stringify({ reqUrl, path, proxyUrl }), {
+            headers: { "Content-Type": "application/json" },
+        });
+    } else {
+        // 返回成功
+        return curRes;
+    }
+
 }
 
 // bilibili/user/video/44744006
-
