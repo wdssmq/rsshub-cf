@@ -6,7 +6,7 @@ const proxyList = [
     // "https://rss.shab.fun/",
     // "https://rsshub.rssforever.com/",
     "https://vercel.mizuno2023.xyz/",
-    "https://rsshub.mizuno2023.xyz/",
+    "https://rsshub.canihave.fun/",
     "https://rsshub.app/",
 ];
 
