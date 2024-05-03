@@ -1,11 +1,11 @@
-addEventListener("fetch", event => {
+addEventListener("fetch", (event) => {
     event.respondWith(handleRequest(event.request))
 })
 
 const proxyList = [
     // "https://rss.shab.fun/",
     // "https://rsshub.rssforever.com/",
-    "https://vercel.mizuno2023.xyz/",
+    "https://vercel.canihave.fun/",
     "https://rsshub.canihave.fun/",
     "https://rsshub.app/",
 ];
